@@ -39,10 +39,10 @@ class Pipe{
     /**We'll create "2 pipes" for 1 pipe. There will be a 
      * top and bottom part of the pipe.
      */
-    display = () => {
+    display = (pipeImage) => {
         noStroke()
 
-        fill(0, 200, 0)
+        // fill(0, 200, 0)
 
         /**The top pipe:
          * Starting posX is right side of the screen.
@@ -60,9 +60,11 @@ class Pipe{
          * Width is this width.
          * Height of this pipe is something between 0-200.
          */
-        
-        rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
-        rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
+        // rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
+        // rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
+
+        image(pipeImage, this.posX, this.posY, this.width, this.topHeight)  //The top pipe
+        image(pipeImage, this.posX, height - this.bottomHeight, this.width, this.bottomHeight) //The bottom pipe
         
     }
 

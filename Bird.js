@@ -16,10 +16,11 @@ class Bird{
 
 
     /**This method is used to create the bird */
-     display = () => {
-        noStroke()  //No border
-        fill(255, 255, 0)   //Yellow bird
-        circle(this.posX, this.posY, this.radius)   //Creates a circle
+     display = (birdImage) => {
+        // noStroke()  //No border
+        // fill(255, 255, 0)   //Yellow bird
+        image(birdImage, this.posX, this.posY)
+        // circle(this.posX, this.posY, this.radius)   //Creates a circle
     }
 
     /**This method will listen for any collisions with the bird */
