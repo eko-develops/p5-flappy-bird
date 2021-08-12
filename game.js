@@ -5,8 +5,9 @@ function setup() {
     createCanvas(600, 400)  //set the canvas size
 
     bird = new Bird()   //create a new Bird object from the Bird class
+    bird2 = new Bird()
 
-    isGameOver = false  //initally the game will not run until the screen is clicked
+    isGameOver = true  //initally the game will not run until the screen is clicked
 }
 
 function draw() {
@@ -16,7 +17,12 @@ function draw() {
     if(isGameOver){ //if the game is over freeze the screen and wait for a mouse click
         bird.display()    
     } else {    //if the game is not over, we'll run the game
-        
+        bird.move()
+        bird.display()
     }
 
+}
+
+function mousePressed(){
+    isGameOver = false
 }
