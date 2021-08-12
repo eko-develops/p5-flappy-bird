@@ -25,19 +25,19 @@ function draw() {
     } else {    //If the game is not over, we'll run the game
         bird.display()  //Display the bird
 
-
+        /**Move the pipes when the game starts */
         for(let pipe of pipes){
-            pipe.move() //Move the pipe
+            pipe.move()
         }
-
 
         /**If the mouseIsPressed returns true, make the bird fly.
          * If mouseIsPressed is false, the bird will fall.
          */
         bird.fly(mouseIsPressed)
         
-        /**If the bird is colliding with the ceiling or ground,
-         * stop the game by setting isGameOver to true.
+        /**While the game is running, if the bird collides
+         *  with the ceiling or ground, stop the game by
+         * setting isGameOver to true.
          */
         if(bird.collide(height)){
             isGameOver = true
@@ -45,9 +45,25 @@ function draw() {
         }
     }   //end isGameOver else
     
-    for(let pipe of pipes){
-        pipe.display()
-    }
+
+    /**Display the pipes*/
+    pipes.forEach( (pipe, index) => {
+        pipe.display()  //Show each pipe from pipes
+        /**By default, pipes will be placed on the ceiling */
+        if(index % 2 === 0){    //For every other pipe, we'll move it to the bottom
+            /**Put the pipe on the bottom.
+             * If we set the posY of the pipe to just height, it will take the upper left corner
+             * and move that to the bottom of the screen, making it not appear. It's there
+             * but it's below the point that you can see. So we'll subtract the height of the pipe
+             * so that it moves the pipe up.
+             * 
+             * As height increases, the canvas will stretch down.
+             */
+            pipe.posY = height - pipe.height    //Change posY of this pipe: height of canvas - pipe height
+        }
+    })
+
+
 }
 
 //Mouse click to start/restart the game

@@ -3,11 +3,12 @@ class Pipe{
         this.width = 50
         this.height = random(100, 300)
 
-        this.posYBottom = height - this.height  //Place the pipe at the bottom
-        this.posYTop = 0    //Place the pipe at the top
+        // this.posYBottom = height - this.height  //Place the pipe at the bottom
+        // this.posYTop = 0    //Place the pipe at the top
 
-        this.botTop = [this.posYBottom, this.posYTop]
-        this.randomYPos = random(this.botTop)
+        // this.botTop = [this.posYBottom, this.posYTop]
+        // this.randomYPos = random(this.botTop)
+        this.posY = 0
         
 
         /**Set the posX of the pipe to be 40 + 100 pixels minimum
@@ -26,14 +27,15 @@ class Pipe{
      * -spawn at different heights and intervals
      */
 
-    display(){
+    display = () => {
         noStroke()
         fill(0, 200, 0)
-        rect(this.posX, this.randomYPos, this.width, this.height)   //posX, posY, width, height
+        rect(this.posX, this.posY, this.width, this.height)   //posX, posY, width, height
     }
 
-    move(){
+    move = () => {
         this.posX += this.velocity * -1
     }
+
 
 }
