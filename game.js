@@ -16,10 +16,14 @@ function draw() {
     if(isGameOver){ //if the game is over freeze the screen and wait for a mouse click
         bird.display()    
     } else {    //if the game is not over, we'll run the game
-        bird.move()
+        // bird.move()
         bird.display()
+        //if the mouse is pressed, make the bird fly
+        bird.fly(mouseIsPressed)
+        
         if(bird.collide(height)){   //if we are colliding stop the game
             isGameOver = true
+            console.log('game over is ', isGameOver)
         }
     }
 
