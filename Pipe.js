@@ -60,10 +60,19 @@ class Pipe{
          * Width is this width.
          * Height of this pipe is something between 0-200.
          */
-        // rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
-        // rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
+        rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
+        rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
 
-        image(pipeImage, this.posX, this.posY, this.width, this.topHeight)  //The top pipe
+        /**We need to flip the top pipe image 180 degrees */
+
+        //We need to set the origin point to be the corner/height of the top pipe
+        push()
+        translate(this.posX + this.width, this.topHeight)
+        rotate(radians(180))
+        image(pipeImage, 0, 0, this.width, this.topHeight)  //test pipe
+        pop()
+        
+        // image(pipeImage, this.posX, 0, this.width, this.topHeight)  //test pipe
         image(pipeImage, this.posX, height - this.bottomHeight, this.width, this.bottomHeight) //The bottom pipe
         
     }
