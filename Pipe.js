@@ -2,9 +2,18 @@ class Pipe{
     constructor(){
         this.width = 50 //Width will always remain the same
 
-        //Get a random number between 0-200
-        this.topHeight = random(100, (height / 2) - 15 )  //Random heights
-        this.bottomHeight = random(100, height / 2) //Random bottom height
+        /**Get a random number between 100 and (500/2) - 30:
+         * 
+         * Highest possible value: (500/2) = 250 - 30 = 220
+         * 
+         * Height of canvas: 500
+         * The height of both pipes: 220 + 220 = 440
+         * 
+         * Smallest gap possible: 500 - 440 = 60
+         * Biggest gap possible: 500 - (125 + 125) = 250
+         */
+        this.topHeight = random(125, (height / 2) - 20)  //Random heights
+        this.bottomHeight = random(125, (height / 2) - 20) //Random bottom height
 
 
         /**Default posY location for pipe is at the top */
@@ -32,6 +41,7 @@ class Pipe{
      */
     display = () => {
         noStroke()
+
         fill(0, 200, 0)
 
         /**The top pipe:
@@ -50,8 +60,10 @@ class Pipe{
          * Width is this width.
          * Height of this pipe is something between 0-200.
          */
+        
         rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
         rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
+        
     }
 
     /**For making the pipes move to the left */
@@ -79,7 +91,7 @@ class Pipe{
              * within the pipe on the x-axis.
              */
             if(bird.posX > this.posX && bird.posX < this.posX + this.width){
-                console.log('collision')
+                console.log('collision', `\nTop Height: ${this.topHeight}\nBottom Height: ${this.bottomHeight}`)
                 return true
             }
         }
