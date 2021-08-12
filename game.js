@@ -5,7 +5,6 @@ function setup() {
     createCanvas(600, 400)  //set the canvas size
 
     bird = new Bird()   //create a new Bird object from the Bird class
-    bird2 = new Bird()
 
     isGameOver = true  //initally the game will not run until the screen is clicked
 }
@@ -19,6 +18,9 @@ function draw() {
     } else {    //if the game is not over, we'll run the game
         bird.move()
         bird.display()
+        if(bird.collide(height)){   //if we are colliding stop the game
+            isGameOver = true
+        }
     }
 
 }

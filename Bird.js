@@ -25,6 +25,16 @@ class Bird{
         this.posY += this.velocity
     }
 
+    collide = (height) => {
+        if(this.posY > height){ //if we hit the ceiling, end the game
+            return true
+        } else if(this.posY < 0){   //if we hit the ground, end the game
+            return true
+        } else {
+            return false    //if not colliding, game is not over
+        }
+    }
+
 
     fly = () => {
 
