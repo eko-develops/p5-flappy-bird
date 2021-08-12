@@ -62,8 +62,6 @@ function draw() {
             pipe.posY = height - pipe.height    //Change posY of this pipe: height of canvas - pipe height
         }
     })
-
-
 }
 
 //Mouse click to start/restart the game
