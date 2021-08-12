@@ -1,7 +1,7 @@
 class Pipe{
     constructor(){
         this.width = 50
-        this.height = 100
+        this.height = random(100, 300)
 
         this.posYBottom = height - this.height  //Place the pipe at the bottom
         this.posYTop = 0    //Place the pipe at the top
@@ -10,6 +10,8 @@ class Pipe{
          * from the bird's position.
          */
         this.posX = 40 + random(100, 380)
+
+        this.velocity = 4
     }
 
     /**The pipe will need...
@@ -24,6 +26,10 @@ class Pipe{
         noStroke()
         fill(0, 200, 0)
         rect(this.posX, this.posYTop, this.width, this.height)   //posX, posY, width, height
+    }
+
+    move(){
+        this.posX += this.velocity * -1
     }
 
 }

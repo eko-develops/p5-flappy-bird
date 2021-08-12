@@ -20,7 +20,7 @@ function draw() {
         bird.display()    //Display the bird
     } else {    //If the game is not over, we'll run the game
         bird.display()  //Display the bird
-
+        pipe.move() //Move the pipe
         /**If the mouseIsPressed returns true, make the bird fly.
          * If mouseIsPressed is false, the bird will fall.
          */
@@ -33,10 +33,8 @@ function draw() {
             isGameOver = true
             console.log('game over is ', isGameOver)
         }
-
     }   //end isGameOver else
     
-
     pipe.display()
 }
 
