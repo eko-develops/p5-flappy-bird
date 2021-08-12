@@ -1,6 +1,8 @@
 let bird    //Initialize the bird
 let isGameOver //We'll need this to keep track if the game is running or not
 let pipes = [] //Initialize an array of pipes
+let scoreLabel
+let score = 0
 
 function setup() {
     createCanvas(600, 500)  //Set the canvas size
@@ -10,6 +12,7 @@ function setup() {
     isGameOver = true  //Initally the game will not run until the screen is clicked
 
     pipes.push(new Pipe())  //Push a new Pipe object to the pipes array
+
 }
 
 function draw() {
@@ -36,6 +39,7 @@ function draw() {
             pipes[i].move()
             /**Check if the pipe is off the screen */
             if(pipes[i].isOffScreen(pipes[i])){
+                score++
                 pipes.splice(i, 1)  //If it is, remove it from the pipes array
             }
         }
@@ -76,6 +80,19 @@ function draw() {
 
     }   //end isGameOver else
 
+
+    /**Draw different text depending on state of game */
+    if(isGameOver){
+        //If the game is over, show the score and instructions to play
+        textSize(24)
+        text(`Your score is ${score}. Click to play.`, 150, 100)
+    } else {
+        //If game is not over, show the score
+        textSize(24)
+        text(`Score: ${score}`, 150, 100)
+    }
+    
+
 }
 
 //Mouse click to start/restart the game
@@ -85,6 +102,7 @@ function mousePressed(){
         bird.posY = height / 2
         isGameOver = false
         pipes = []
+        score = 0
         console.log('game over is ', isGameOver)
         console.log('game started/restarted')
     } 
