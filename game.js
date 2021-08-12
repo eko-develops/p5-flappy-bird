@@ -1,12 +1,16 @@
 let bird    //Initialize the bird
 let isGameOver //We'll need this to keep track if the game is running or not
 
+let pipe
+
 function setup() {
     createCanvas(600, 400)  //Set the canvas size
 
     bird = new Bird()   //Create a new Bird object from the Bird class
-
+    
     isGameOver = true  //Initally the game will not run until the screen is clicked
+
+    pipe = new Pipe()
 }
 
 function draw() {
@@ -32,6 +36,8 @@ function draw() {
 
     }   //end isGameOver else
     
+
+    pipe.display()
 }
 
 //Mouse click to start/restart the game
