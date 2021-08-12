@@ -25,10 +25,18 @@ function draw() {
             isGameOver = true
             console.log('game over is ', isGameOver)
         }
-    }
 
+    }
+    
 }
 
+//inital mouse click to start the game
 function mousePressed(){
-    isGameOver = false
+    //if the game is over and the bird is colliding, next click will restart the game
+    if(isGameOver){
+        bird.posY = height / 2
+        isGameOver = false
+        console.log('game over is ', isGameOver)
+        console.log('game started/restarted')
+    }
 }

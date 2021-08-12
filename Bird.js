@@ -21,26 +21,23 @@ class Bird{
         circle(this.posX, this.posY, this.radius)   //create a circle
     }
 
-    // move = () => {
-    //     this.posY += this.velocity
-    // }
-
     collide = (height) => {
-        if(this.posY > height){ //if we hit the ceiling, end the game
+        if(this.posY > height){ //if we hit the floor, end the game
+            console.log('colliding floor')
             return true
-        } else if(this.posY < 0){   //if we hit the ground, end the game
+        } else if(this.posY < 0){   //if we hit the ceiling, end the game
+            console.log('colliding ceiling')
             return true
         } else {
             return false    //if not colliding, game is not over
         }
     }
 
-
-    fly = () => {
-        if(mouseIsPressed){
+    fly = (mouseIsPressed) => {
+        if(mouseIsPressed){ //if the mouse is pressed move bird up
             this.posY += this.velocity
         } else {
-            this.posY -= this.velocity * 1
+            this.posY -= this.velocity * 1  //if not bird will fall by getting the inverse of velocity
         }
         
     }
