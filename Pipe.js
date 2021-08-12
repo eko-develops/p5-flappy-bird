@@ -3,8 +3,8 @@ class Pipe{
         this.width = 50 //Width will always remain the same
 
         //Get a random number between 0-200
-        this.topHeight = random(height / 2)  //Random heights
-        this.bottomHeight = random(height / 2) //Random bottom height
+        this.topHeight = random(100, (height / 2) - 15 )  //Random heights
+        this.bottomHeight = random(100, height / 2) //Random bottom height
 
 
         /**Default posY location for pipe is at the top */
