@@ -1,38 +1,42 @@
-let bird    //initialize the bird
-let isGameOver //we'll need this to keep track if the game is running or not
+let bird    //Initialize the bird
+let isGameOver //We'll need this to keep track if the game is running or not
 
 function setup() {
-    createCanvas(600, 400)  //set the canvas size
+    createCanvas(600, 400)  //Set the canvas size
 
-    bird = new Bird()   //create a new Bird object from the Bird class
+    bird = new Bird()   //Create a new Bird object from the Bird class
 
-    isGameOver = true  //initally the game will not run until the screen is clicked
+    isGameOver = true  //Initally the game will not run until the screen is clicked
 }
 
 function draw() {
-    background(0, 170, 200) //the background colour
+    background(0, 170, 200) //The background colour
 
+    if(isGameOver){ //If the game is over, freeze the screen and wait for a mouse click
+        bird.display()    //Display the bird
+    } else {    //If the game is not over, we'll run the game
+        bird.display()  //Display the bird
 
-    if(isGameOver){ //if the game is over freeze the screen and wait for a mouse click
-        bird.display()    
-    } else {    //if the game is not over, we'll run the game
-        // bird.move()
-        bird.display()
-        //if the mouse is pressed, make the bird fly
+        /**If the mouseIsPressed returns true, make the bird fly.
+         * If mouseIsPressed is false, the bird will fall.
+         */
         bird.fly(mouseIsPressed)
         
-        if(bird.collide(height)){   //if we are colliding stop the game
+        /**If the bird is colliding with the ceiling or ground,
+         * stop the game by setting isGameOver to true.
+         */
+        if(bird.collide(height)){
             isGameOver = true
             console.log('game over is ', isGameOver)
         }
 
-    }
+    }   //end isGameOver else
     
 }
 
-//inital mouse click to start the game
+//Mouse click to start/restart the game
 function mousePressed(){
-    //if the game is over and the bird is colliding, next click will restart the game
+    //If the game is over and the bird is colliding, next click will restart the game
     if(isGameOver){
         bird.posY = height / 2
         isGameOver = false
