@@ -6,6 +6,10 @@ class Pipe{
         this.posYBottom = height - this.height  //Place the pipe at the bottom
         this.posYTop = 0    //Place the pipe at the top
 
+        this.botTop = [this.posYBottom, this.posYTop]
+        this.randomYPos = random(this.botTop)
+        
+
         /**Set the posX of the pipe to be 40 + 100 pixels minimum
          * from the bird's position.
          */
@@ -25,7 +29,7 @@ class Pipe{
     display(){
         noStroke()
         fill(0, 200, 0)
-        rect(this.posX, this.posYTop, this.width, this.height)   //posX, posY, width, height
+        rect(this.posX, this.randomYPos, this.width, this.height)   //posX, posY, width, height
     }
 
     move(){

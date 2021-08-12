@@ -58,5 +58,5 @@ function mousePressed(){
         isGameOver = false
         console.log('game over is ', isGameOver)
         console.log('game started/restarted')
-    }
+    } 
 }
