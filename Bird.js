@@ -29,7 +29,8 @@ class Bird{
             return true
         } else if(this.posY < 0){   //If the bird collides with the ceiling
             console.log('colliding ceiling')
-            return true
+            this.posY = 0
+            return false
         } else {
             return false    //If the bird is not colliding with the ceiling or ground
         }
@@ -38,7 +39,7 @@ class Bird{
     /**This method controls the flight of the bird*/
     fly = (mouseIsPressed) => {
         if(mouseIsPressed){ //If mouseisPressed is true, the bird will fly by recursively adding velocity to posY
-            this.posY += this.velocity
+            this.posY += this.velocity * 2
         } else {    //If mouseIsPressed is false, bird will fall by getting the inverse of velocity
             this.posY += this.velocity * -1  
         }
