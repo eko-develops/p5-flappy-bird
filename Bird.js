@@ -29,7 +29,7 @@ class Bird{
             return true
         } else if(this.posY < 0){   //If the bird collides with the ceiling
             console.log('colliding ceiling')
-            this.posY = 0
+            this.posY = 0   //Don't let the go off-screen when hitting ceiling
             return false
         } else {
             return false    //If the bird is not colliding with the ceiling or ground
