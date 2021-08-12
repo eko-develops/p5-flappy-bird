@@ -1,14 +1,27 @@
 class Bird{
     constructor(){
-        this.posX = 30
-        this.posY = height / 2
+        this.posX = 30  //starting posX of the bird
+        this.posY = height / 2  //start at the centre of the canvas vertically
+        this.radius = 30    //the radius of the bird
     }
 
 
+    /**
+     * The bird will need to..
+     * -move up and down
+     * -set isGameOver to true if collide with ceiling, ground, or pipe
+     */
+
+
     /**This method is used to create the bird */
-     create = () => {
-        noStroke()
-        fill(255, 0, 0)
-        circle(this.posX, this.posY, 30)
+     display = () => {
+        noStroke()  //no border
+        fill(255, 255, 0)   //yellow bird
+        circle(this.posX, this.posY, this.radius)   //create a circle
+    }
+
+
+    fly = () => {
+
     }
 }
