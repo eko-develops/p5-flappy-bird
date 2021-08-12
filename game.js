@@ -1,7 +1,7 @@
 let bird    //Initialize the bird
 let isGameOver //We'll need this to keep track if the game is running or not
-
-let pipe
+let pipes = [] //Initialize an array of pipes
+const numberOfPipes = 4//Initialize a constant to control starting amount of pipes
 
 function setup() {
     createCanvas(600, 400)  //Set the canvas size
@@ -10,17 +10,27 @@ function setup() {
     
     isGameOver = true  //Initally the game will not run until the screen is clicked
 
-    pipe = new Pipe()
+    for(let i = 0; i < numberOfPipes; i++){
+        pipes[i] = new Pipe()
+    }
+
 }
 
 function draw() {
-    background(0, 170, 200) //The background colour
+    // background(0, 170, 200) //The background colour
+    background(60) //The background colour
 
     if(isGameOver){ //If the game is over, freeze the screen and wait for a mouse click
         bird.display()    //Display the bird
     } else {    //If the game is not over, we'll run the game
         bird.display()  //Display the bird
-        pipe.move() //Move the pipe
+
+
+        for(let pipe of pipes){
+            pipe.move() //Move the pipe
+        }
+
+
         /**If the mouseIsPressed returns true, make the bird fly.
          * If mouseIsPressed is false, the bird will fall.
          */
@@ -35,7 +45,9 @@ function draw() {
         }
     }   //end isGameOver else
     
-    pipe.display()
+    for(let pipe of pipes){
+        pipe.display()
+    }
 }
 
 //Mouse click to start/restart the game
