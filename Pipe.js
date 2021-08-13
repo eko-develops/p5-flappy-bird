@@ -60,8 +60,8 @@ class Pipe{
          * Width is this width.
          * Height of this pipe is something between 0-200.
          */
-        rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
-        rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
+        // rect(this.posX, this.posY, this.width, this.topHeight)   //posX, posY, width, height
+        // rect(this.posX, height - this.bottomHeight, this.width, this.bottomHeight)   //posX, posY, width, height
 
         /**We need to flip the top pipe image 180 degrees */
 

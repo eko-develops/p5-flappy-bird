@@ -1,9 +1,11 @@
 class Bird{
-    constructor(){
+    constructor(birdImages){
         this.posX = 40  //Starting posX of the bird
         this.posY = height / 2  //Start at the centre of the canvas vertically
         this.radius = 30    //The radius of the bird
         this.velocity = -5 //The speed the bird falls and flys
+
+        this.birdImages = birdImages
     }
 
 
@@ -16,10 +18,12 @@ class Bird{
 
 
     /**This method is used to create the bird */
-     display = (birdImage) => {
+     display = () => {
         // noStroke()  //No border
         // fill(255, 255, 0)   //Yellow bird
-        image(birdImage, this.posX, this.posY)
+        image(birdImages[0], this.posX, this.posY)
+
+
         // circle(this.posX, this.posY, this.radius)   //Creates a circle
     }
 
@@ -40,9 +44,9 @@ class Bird{
     /**This method controls the flight of the bird*/
     fly = (mouseIsPressed) => {
         if(mouseIsPressed){ //If mouseisPressed is true, the bird will fly by recursively adding velocity to posY
-            this.posY += this.velocity * 2
+            this.posY += this.velocity
         } else {    //If mouseIsPressed is false, bird will fall by getting the inverse of velocity
-            this.posY += this.velocity * -1  
+            this.posY += this.velocity * -1
         }
         
     }

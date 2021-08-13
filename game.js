@@ -6,18 +6,26 @@ let score = 0
 let birdImage
 let bgImage
 let pipeImage
+let birdFlyImage
+let birdFallImage
+
+let birdImages = []
 
 //Preload any images, audio files, etc..
 function preload(){
     birdImage = loadImage('flappy-bird-assets/sprites/bluebird-midflap.png')
     bgImage = loadImage('flappy-bird-assets/sprites/background-day.png')
     pipeImage = loadImage('flappy-bird-assets/sprites/pipe-green.png')
+    birdFlyImage = loadImage('flappy-bird-assets/sprites/bluebird-downflap.png')
+    birdFallImage = loadImage('flappy-bird-assets/sprites/bluebird-upflap.png')
+
+    birdImages = [birdImage, birdFlyImage, birdFallImage]
 }
 
 function setup() {
     createCanvas(500, 600)  //Set the canvas size
 
-    bird = new Bird()   //Create a new Bird object from the Bird class
+    bird = new Bird(birdImages)   //Create a new Bird object from the Bird class
     
     isGameOver = true  //Initally the game will not run until the screen is clicked
 
@@ -30,14 +38,55 @@ function draw() {
     imageMode(CENTER)
     image(bgImage, width / 2, height / 2, width, height)
 
+    
+    displayPipes()
+
+    runGame()
+
+    checkGameOver()    
+    
+
+}
+
+//Mouse click to start/restart the game
+function mousePressed(){
+    //If the game is over and the bird is colliding, next click will restart the game
+    if(isGameOver){
+        bird.posY = height / 2
+        isGameOver = false
+        pipes = []
+        score = 0
+        console.log('game over is ', isGameOver)
+        console.log('game started/restarted')
+    } 
+}
+
+function checkGameOver(){
+    /**Draw different text depending on state of game */
+    if(isGameOver){
+        //If the game is over, show the score and instructions to play
+        textSize(24)
+        fill(255)
+        text(`Your score is ${score}. Click to play.`, 150, 100)
+    } else {
+        //If game is not over, show the score
+        textSize(24)
+        fill(255)
+        text(`Score: ${score}`, 150, 100)
+    }
+}
+
+function displayPipes(){
     /**We keep the display of the pipes always showing
      * so when the user dies, it acts like a death cam
      */
      for(let pipe of pipes){
-         imageMode(CORNER)
-        pipe.display(pipeImage)
-    }
+        imageMode(CORNER)
+       pipe.display(pipeImage)
+   }
+}
 
+function runGame(){
     if(isGameOver){ //If the game is over, freeze the screen and wait for a mouse click
         bird.display(birdImage)    //Display the bird
     } else {    //If the game is not over, we'll run the game
@@ -92,33 +141,4 @@ function draw() {
         })
 
     }   //end isGameOver else
-
-
-    /**Draw different text depending on state of game */
-    if(isGameOver){
-        //If the game is over, show the score and instructions to play
-        textSize(24)
-        fill(255)
-        text(`Your score is ${score}. Click to play.`, 150, 100)
-    } else {
-        //If game is not over, show the score
-        textSize(24)
-        fill(255)
-        text(`Score: ${score}`, 150, 100)
-    }
-    
-
-}
-
-//Mouse click to start/restart the game
-function mousePressed(){
-    //If the game is over and the bird is colliding, next click will restart the game
-    if(isGameOver){
-        bird.posY = height / 2
-        isGameOver = false
-        pipes = []
-        score = 0
-        console.log('game over is ', isGameOver)
-        console.log('game started/restarted')
-    } 
 }
