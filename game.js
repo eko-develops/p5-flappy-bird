@@ -42,9 +42,10 @@ function draw() {
 
     displayPipes()
     showScore()
-    startScreen()
+    bird.display(birdImage)
+
     if(isGameOver){
-        // gameOverScreen()
+        gameOverScreen()
     } else {
         runGame()
     }
@@ -55,6 +56,7 @@ function mousePressed(){
     //If the game is over and the bird is colliding, next click will restart the game
     if(isGameOver){
         bird.posY = height / 2
+        bird.posX = 40
         isGameOver = false
         pipes = []
         score = 0
@@ -97,7 +99,6 @@ function movePipes(){
 }
 
 function runGame(){
-        bird.display(birdImage)  //Display the bird
 
         movePipes() //Move the pipes when game is running
 

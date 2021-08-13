@@ -1,11 +1,8 @@
 class Bird{
-    constructor(birdImages){
+    constructor(){
         this.posX = 40  //Starting posX of the bird
         this.posY = height / 2  //Start at the centre of the canvas vertically
-        this.radius = 30    //The radius of the bird
         this.velocity = -5 //The speed the bird falls and flys
-
-        this.birdImages = birdImages
     }
 
 
@@ -18,13 +15,8 @@ class Bird{
 
 
     /**This method is used to create the bird */
-     display = () => {
-        // noStroke()  //No border
-        // fill(255, 255, 0)   //Yellow bird
-        image(birdImages[0], this.posX, this.posY)
-
-
-        // circle(this.posX, this.posY, this.radius)   //Creates a circle
+     display = (birdImage) => {
+        image(birdImage, this.posX, this.posY)
     }
 
     /**This method will listen for any collisions with the bird */
