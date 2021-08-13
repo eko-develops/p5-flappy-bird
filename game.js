@@ -8,7 +8,7 @@ let bgImage
 let pipeImage
 let birdFlyImage
 let birdFallImage
-
+let highscore = 0
 let birdImages = []
 
 //Preload any images, audio files, etc..
@@ -38,14 +38,10 @@ function draw() {
     imageMode(CENTER)
     image(bgImage, width / 2, height / 2, width, height)
 
-    
+    showScore()
     displayPipes()
-
     runGame()
-
     checkGameOver()    
-    
-
 }
 
 //Mouse click to start/restart the game
@@ -65,15 +61,15 @@ function checkGameOver(){
     /**Draw different text depending on state of game */
     if(isGameOver){
         //If the game is over, show the score and instructions to play
-        textSize(24)
-        fill(255)
-        text(`Your score is ${score}. Click to play.`, 150, 100)
-    } else {
-        //If game is not over, show the score
-        textSize(24)
-        fill(255)
-        text(`Score: ${score}`, 150, 100)
+        gameOver()
     }
+}
+
+function showScore(){
+        textSize(16)
+        fill(255)
+        text(`Highscore: ${highscore}`, 20, 30)
+        text(`Score: ${score}`, 20, 70)
 }
 
 function displayPipes(){
@@ -86,25 +82,29 @@ function displayPipes(){
    }
 }
 
+function movePipes(){
+    /**Move the pipes when the game starts.
+         * We'll also need to check if the pipe is off the screen
+         * and remove it. If we don't remove it, the pipes
+         * array could get very big.
+         */
+     for(let i = pipes.length - 1; i >= 0; i--){
+        pipes[i].move()
+        /**Check if the pipe is off the screen */
+        if(pipes[i].isOffScreen(pipes[i])){
+            score++
+            pipes.splice(i, 1)  //If it is, remove it from the pipes array
+        }
+    }
+}
+
 function runGame(){
     if(isGameOver){ //If the game is over, freeze the screen and wait for a mouse click
         bird.display(birdImage)    //Display the bird
     } else {    //If the game is not over, we'll run the game
         bird.display(birdImage)  //Display the bird
 
-        /**Move the pipes when the game starts.
-         * We'll also need to check if the pipe is off the screen
-         * and remove it. If we don't remove it, the pipes
-         * array could get very big.
-         */
-        for(let i = pipes.length - 1; i >= 0; i--){
-            pipes[i].move()
-            /**Check if the pipe is off the screen */
-            if(pipes[i].isOffScreen(pipes[i])){
-                score++
-                pipes.splice(i, 1)  //If it is, remove it from the pipes array
-            }
-        }
+        movePipes()
 
         /**frameCount is an enviroment variable available with p5.
          * We can use it to create a new pipe depending on how many
@@ -141,4 +141,10 @@ function runGame(){
         })
 
     }   //end isGameOver else
+}
+
+function gameOver(){
+        textSize(32)
+        fill(255)
+        text(`Game Over!`, 150, 200)
 }
