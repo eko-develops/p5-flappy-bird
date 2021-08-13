@@ -31,6 +31,8 @@ function setup() {
 
     pipes.push(new Pipe())  //Push a new Pipe object to the pipes array
 
+    textAlign(CENTER, CENTER)
+
 }
 
 function draw() {
@@ -40,8 +42,9 @@ function draw() {
 
     displayPipes()
     showScore()
+    startScreen()
     if(isGameOver){
-        gameOverScreen()
+        // gameOverScreen()
     } else {
         runGame()
     }
@@ -63,8 +66,8 @@ function mousePressed(){
 function showScore(){
         textSize(16)
         fill(255)
-        text(`Highscore: ${highscore}`, 20, 30)
-        text(`Score: ${score}`, 20, 70)
+        text(`Highscore: ${highscore}`, 70, 30)
+        text(`Score: ${score}`, 55, 70)
 }
 
 function displayPipes(){
@@ -94,12 +97,9 @@ function movePipes(){
 }
 
 function runGame(){
-    if(isGameOver){ //If the game is over, freeze the screen and wait for a mouse click
-        bird.display(birdImage)    //Display the bird
-    } else {    //If the game is not over, we'll run the game
         bird.display(birdImage)  //Display the bird
 
-        movePipes()
+        movePipes() //Move the pipes when game is running
 
         /**frameCount is an enviroment variable available with p5.
          * We can use it to create a new pipe depending on how many
@@ -110,10 +110,11 @@ function runGame(){
             pipes.push(new Pipe())
         }
 
-        /**If the mouseIsPressed returns true, make the bird fly.
+        /**If the mouseIsPressed returns true while the game is 
+         * running, make the bird fly.
          * If mouseIsPressed is false, the bird will fall.
          */
-        bird.fly(mouseIsPressed)
+        bird.fly(mouseIsPressed)    
         
         /**While the game is running, if the bird collides
          *  with the ceiling or ground, stop the game by
@@ -134,19 +135,19 @@ function runGame(){
                 console.log('game over is ', isGameOver)
             }
         })
-
-    }   //end isGameOver else
 }
 
 
 function gameOverScreen(){
         textSize(32)
         fill(255)
-        text(`Game Over!`, 150, 200)
+        text(`Game Over!`, width / 2, 150)
+        textSize(16)
+        text(`Click to play again`, width / 2, 200)
     }
     
 function startScreen(){
-        textSize(32)
+        textSize(24)
         fill(255)
-        text(`Click to play!`, 150, 200)
+        text(`CLICK TO START`, width / 2, 200)
 }
