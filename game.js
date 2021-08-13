@@ -38,10 +38,13 @@ function draw() {
     imageMode(CENTER)
     image(bgImage, width / 2, height / 2, width, height)
 
-    showScore()
     displayPipes()
-    runGame()
-    checkGameOver()    
+    showScore()
+    if(isGameOver){
+        gameOverScreen()
+    } else {
+        runGame()
+    }
 }
 
 //Mouse click to start/restart the game
@@ -55,14 +58,6 @@ function mousePressed(){
         console.log('game over is ', isGameOver)
         console.log('game started/restarted')
     } 
-}
-
-function checkGameOver(){
-    /**Draw different text depending on state of game */
-    if(isGameOver){
-        //If the game is over, show the score and instructions to play
-        gameOver()
-    }
 }
 
 function showScore(){
@@ -143,8 +138,15 @@ function runGame(){
     }   //end isGameOver else
 }
 
-function gameOver(){
+
+function gameOverScreen(){
         textSize(32)
         fill(255)
         text(`Game Over!`, 150, 200)
+    }
+    
+function startScreen(){
+        textSize(32)
+        fill(255)
+        text(`Click to play!`, 150, 200)
 }
